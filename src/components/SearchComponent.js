@@ -30,9 +30,7 @@ filtroSideBar = !userFiltro.city ? filtroSideBar : filtroSideBar.filter((dato) =
    dato.address.city.toLowerCase().includes(userFiltro.city.toLocaleLowerCase()))
 const results = !search ? filtroSideBar : filtroSideBar.filter((dato) =>
    dato.name.toLowerCase().includes(search.toLocaleLowerCase()))
-   const isEmpty = ({company,dom,city}) =>{
-     return company === "" || dom == "" ||city == ""
- }
+
     useEffect(()=>{
         showData()
     },[])

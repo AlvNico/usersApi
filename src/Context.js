@@ -2,7 +2,10 @@ import React from 'react';
 
 export const users = {
  
-  "company":  ""
+  "company":  "",
+  "dom" : "",
+  "city" :""
+
    
 };
 

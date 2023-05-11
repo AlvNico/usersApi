@@ -22,22 +22,33 @@ function SearchComponent() {
         setSearch(e.target.value)
     }
    //filtrado
- 
-  const results = !search ? users :users.filter((dato)=>
+
+
+    let filtroSideBar=!userFiltro.company ? users :users.filter((dato)=>
+  dato.company.name.toLowerCase().includes(userFiltro.company.toLocaleLowerCase()))
+  filtroSideBar=!userFiltro.dom ? filtroSideBar : filtroSideBar.filter((dato)=>
+  dato.email.toLowerCase().includes(userFiltro.dom.toLocaleLowerCase()))
+  filtroSideBar=!userFiltro.city ? filtroSideBar : filtroSideBar.filter((dato)=>
+  dato.address.city.toLowerCase().includes(userFiltro.city.toLocaleLowerCase()))
+  const results = !search ? filtroSideBar :filtroSideBar.filter((dato)=>
   dato.name.toLowerCase().includes(search.toLocaleLowerCase())
   )
 
     useEffect(()=>{
         showData()
     },[])
-    console.log("final",    userFiltro)
+    //console.log("final",    userFiltro)
   return (
     <div>
-       <h1>{userFiltro.company}</h1>
+
         <input value= {search} onChange={searcher} type='text' placeholder='Buscar personas...' className='form-control' />
+        {results.length> 0 ? 
+
         <table className='table table-striped table-hover mt-5 shadow-lg'>
             <thead>
-                <tr>
+                <tr>  <th>
+                        ID
+                    </th>
                     <th>
                         NOMBRE
                     </th>
@@ -53,13 +64,14 @@ function SearchComponent() {
                 {results.map(({id,name,username,email})=>(
               
                     <tr key={id}>
+                        <td>{id}</td>
                         <td>{name}</td>
                         <td>{username}</td>
                         <td>{email}</td>
                     </tr>
                 ))}
             </tbody>
-        </table>
+        </table> : <h1>No coincide ninguna busqueda</h1> }
     </div>
   )
 }

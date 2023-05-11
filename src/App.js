@@ -6,7 +6,7 @@ import userContext, { users } from './Context';
 function App() {
   
   const [userFiltro, setUsersFiltro] = useState(users);
-  console.log(userFiltro)
+  //console.log(userFiltro)
 
   return (
     <userContext.Provider value={{ userFiltro, setUsersFiltro }}>

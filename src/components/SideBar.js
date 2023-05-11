@@ -43,9 +43,21 @@ function SideBar() {
   const domFiltered= quitarRepetidos(users.map((usuario)=> usuario.email.split(".")[usuario.email.split(".").length - 1]))
   const companyFiltered= quitarRepetidos(users.map((usuario)=>  usuario.company.name))
   const cityFiltered= quitarRepetidos(users.map((usuario)=>  usuario.address.city))
+ // verificar user
+ const isEmpty = (userFiltro) =>{
+  return (userFiltro.company != "" || userFiltro.dom != "" ||userFiltro.city != "")
+}
+const resetFilter = () => {
+  setUsersFiltro({ company: "" ,dom:"" ,city:"" });
+}
+
+console.log("aca",isEmpty(userFiltro))
   return (
     <div className="sidebar">
+      <br/>
+            {  isEmpty(userFiltro)? <button class="btn btn-primary" onClick={resetFilter}>Limpiar filtros</button>: null}
       <form onSubmit={handleSubmit}>
+      <br/>
         <p>Filtrar por compania de trabajo</p>
         <select name="company" onChange={handleChange} class="form-select">
         <option value="">Compania</option>
